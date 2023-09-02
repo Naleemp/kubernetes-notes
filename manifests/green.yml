@@ -1,0 +1,20 @@
+apiVersion: apps/v1 
+kind: Deployment
+metadata:
+  name: green 
+spec:
+  selector:
+    matchLabels:
+      app: green
+  replicas: 2  
+  template: 
+    metadata: 
+      name: green
+      labels:
+        app: green
+    spec:
+      containers: 
+        - name: hello
+          image: mylandmarktech/hello:3  
+          ports: 
+          - containerPort: 80
