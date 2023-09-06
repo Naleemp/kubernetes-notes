@@ -1,0 +1,46 @@
+=##mongo service
+apiVersion: apps/v1 
+kind: ReplicaSet
+metadata:
+  namespace: dev
+  name: mongo  
+spec:
+  selector:
+    matchLabels:
+      app: db  
+  template:
+    metadata:
+      name: mongo   
+      labels:
+        app: db   
+    spec:
+      volumes:
+      - name: hostpathvol  
+        hostPath:
+          path: /tmp/mydata 
+      containers:
+      - name: mongdb   
+        image: mongo    
+        ports:
+        - containerPort: 27017    
+        env:
+        - name: MONGO_INITDB_ROOT_USERNAME
+          value: devdb    
+        - name: MONGO_INITDB_ROOT_PASSWORD   
+          value: devdb@123 
+        volumeMounts:
+        - name: hostpathvol
+          mountPath: /data/db  
+          
+ ---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo
+spec:
+  type: ClusterIP
+  selector:
+    app: mongodb
+  ports:
+  - port: 27017
+    targetPort: 27017
