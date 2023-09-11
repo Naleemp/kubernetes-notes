@@ -31,6 +31,9 @@ In the case of NGINX, the Ingress controller is deployed in a pod along with the
 ```
 helm repo add nginx https://helm.nginx.com/stable
 helm repo update
+
+Add helm chart for prometheus
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 ```
 ## 2. Deploy nginx-ingress using helm chart
  # NB. This will create nginx-ingress namespace, clusterRole, ClusterRoleBinding and more
