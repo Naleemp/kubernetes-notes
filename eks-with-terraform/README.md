@@ -1,5 +1,5 @@
 #  **<span style="color:green">NaleempInfoTech</span>**
-### **Email: simonpeter@nalempinfotech.com**
+### **Email: simonpeter@nalempinfotech.com,mendysimonpeter@gmail.com**
 # Terraform Installation And Setup In AWS EC2 Linux Instances
 #  Using Terraform to provision a fully managed Amazon EKS Cluster
 
