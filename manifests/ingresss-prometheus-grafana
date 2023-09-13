@@ -1,0 +1,71 @@
+helm ingress chart
+===============================
+helm repo add nginx https://helm.nginx.com/stable
+helm repo update
+helm show values nginx/   > correctingvalues.yml
+helm install myinctlr  nginx/nginx-ingress -f correctingvalues.yml
+kubectl get ingress
+======================================================
+helm grafana chart
+===========================================================================
+helm repo add grafana https://grafana.github.io/helm-charts
+helm repo update
+helm search repo grafana
+helm show values grafana/grafana
+helm install grafana  grafana/grafana
+
+helm prometheus
+===================================
+helm repo add apm https://prometheus-community.github.io/helm-charts
+helm repo update
+helm search repo apm
+helm show values apm/prometheus
+helm install apm apm/prometheus -f <yourCustomalertmanagerName>
+
+myingresss.yml
+==================================
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: myingress
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: bj.nalempinfotech.net
+    http:
+      paths:
+      - pathType: Prefix
+        path: /
+        backend:
+          service:
+            name: prometheus-alertmanager
+            port:
+              number: 9093
+  - host: bk.nalempinfotech.net
+    http:
+      paths:
+      - pathType: Prefix
+        path: /
+        backend:
+          service:
+            name: prometheus-server
+            port:
+              number: 80
+  - host: sk.nalempinfotech.net
+    http:
+      paths:
+      - pathType: Prefix
+        path: /
+        backend:
+          service:
+            name: grafana
+            port:
+              number: 80
+
+ kubectl apply -f myingress.yaml
+ 
+ 
+ Add source====>enter the name of the prometheus server
+ kubectl get svc --->to get the name of the prometheus server
+ 
+ sample dashboard IDS:3119,7249,8919,6417
