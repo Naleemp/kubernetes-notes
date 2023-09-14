@@ -20,7 +20,7 @@ sudo su - eksadmin
 ```
 ### Install Terraform
 ``` sh
-$ git clone https://github.com/mylandmarktechs/eks-terraform-setup
+$ git clone https://github.com/Naleemp/kubernetes-notes.git
 $ cd eks-terraform-setup
 # install terraform using a bash shell script
 $ sh terraform-install.sh
